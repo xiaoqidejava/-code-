@@ -1,0 +1,37 @@
+public class RequestOtherMethod extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
+        //获取请求的URL
+        StringBuffer requestURL = req.getRequestURL();
+        //http://localhost:8080/requestOtherMethod_war_exploded/other
+        System.out.println("requestURL=="+requestURL);
+
+
+        //获取请求的URI: URL去掉请求协议及主机后的剩余部分
+        String requestURI = req.getRequestURI();
+        ///requestOtherMethod_war_exploded/other
+        System.out.println("requestURI=="+requestURI);
+
+        //获取当前Web应用的根路径 (重点)
+        String contextPath = req.getContextPath();
+        System.out.println("contextPath=="+contextPath);
+                                
+        //获取客户端IP
+        String clientIP=req.getRemoteAddr();
+        System.out.println("clientIP=="+clientIP);
+
+
+        //获取servlert xml中 url-patten 的精确部分
+        String servletPath = req.getServletPath();
+//        servletPath/other
+        System.out.println("servletPath=="+servletPath);
+
+        //获取servlet xml中 url-patten 的 通配符部分
+        String pathInfo = req.getPathInfo();
+//        pathInfo =  null
+        System.out.println("pathInfo =="+pathInfo);
+
+    }
+}
